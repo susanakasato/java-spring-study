@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.java_study.spring.entities.Category;
 import com.java_study.spring.entities.Order;
+import com.java_study.spring.entities.OrderItem;
 import com.java_study.spring.entities.Product;
 import com.java_study.spring.entities.User;
 import com.java_study.spring.entities.enums.OrderStatus;
 import com.java_study.spring.repositories.CategoryRepository;
+import com.java_study.spring.repositories.OrderItemRepository;
 import com.java_study.spring.repositories.OrderRepository;
 import com.java_study.spring.repositories.ProductRepository;
 import com.java_study.spring.repositories.UserRepository;
@@ -34,6 +36,9 @@ public class TestConfig implements CommandLineRunner{
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private OrderItemRepository orderItemRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		User user1 = new User(null, "Mary", "mary@gmail.com", "99999-9999", "1234");
@@ -63,6 +68,11 @@ public class TestConfig implements CommandLineRunner{
 		product5.getCategories().add(category2);
 		productRepository.saveAll(List.of(product1, product2, product3, product4, product5));
 
+		OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+		OrderItem orderItem2 = new OrderItem(order1, product3, 1, product3.getPrice());
+		OrderItem orderItem3 = new OrderItem(order2, product3, 2, product3.getPrice());
+		OrderItem orderItem4 = new OrderItem(order3, product5, 3, product5.getPrice());
+		orderItemRepository.saveAll(List.of(orderItem1, orderItem2, orderItem3, orderItem4));
 	}
 
 }
