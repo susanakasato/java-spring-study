@@ -29,9 +29,10 @@ public class TestConfig implements CommandLineRunner{
 		User user2 = new User(null, "John", "john@gmail.com", "98888-8888", "0000");
 		userRepository.saveAll(List.of(user1, user2));
 		
-		Order order1 = new Order(null, Instant.parse("2025-03-01T03:15:00Z"));
-		Order order2 = new Order(null, Instant.parse("2025-03-11T22:00:00Z"));
-		orderRepository.saveAll(List.of(order1, order2));
+		Order order1 = new Order(null, Instant.parse("2025-03-01T03:15:00Z"), user1);
+		Order order2 = new Order(null, Instant.parse("2025-03-11T22:00:00Z"), user2);
+		Order order3 = new Order(null, Instant.parse("2025-03-12T12:20:20Z"), user2);
+		orderRepository.saveAll(List.of(order1, order2, order3));
 	}
 
 }

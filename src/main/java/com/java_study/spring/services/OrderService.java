@@ -31,6 +31,7 @@ public class OrderService {
 	public Order update(Long id, Order order) {
 		Order entityOrder = orderRepository.getReferenceById(id);
 		entityOrder.setMoment(order.getMoment());
+		entityOrder.setClient(order.getClient());
 		return orderRepository.save(entityOrder);
 	}
 	
